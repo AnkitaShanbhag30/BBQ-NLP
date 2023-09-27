@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import io
 import json
-from BBQ_Full.utils import *
+from utils import *
 import random
 import re
 import ast
@@ -21,9 +21,9 @@ cats = [
 ]
 
 # read in vocabulary files
-vocab = pd.read_csv("BBQ_full/templates/vocabulary.csv")
+vocab = pd.read_csv("./templates/vocabulary.csv")
 vocab = vocab[vocab.Pilot_include != "No"]
-names_vocab = pd.read_csv("BBQ_full/templates/vocabulary_proper_names.csv")
+names_vocab = pd.read_csv("./templates/vocabulary_proper_names.csv")
 
 unknown_options = [
     "Unknown",
@@ -49,11 +49,11 @@ need_stereotyping_subset = [
 # big loop, does everything
 for cat in cats:
     frames = pd.read_csv(
-        "BBQ_full/templates/new_templates - %s.csv" % cat, na_filter=False
+        "./templates/new_templates - %s.csv" % cat, na_filter=False
     )  # get the right template file
 
     dat_file = io.open(
-        "BBQ_full/data/%s.jsonl" % cat, "w"
+        "./data/%s.jsonl" % cat, "w"
     )  # open the file that all the data will be saved in
 
     the_frames = frames[
